@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import Layout from './components/layout/layout';
 import './App.css';
+import { Route,Switch,BrowserRouter as Router } from 'react-router-dom';
+import mainbuilder from './containers/mainBuilder/mainBuilder';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "animate.css/animate.min.css";
+import 'pure-react-carousel/dist/react-carousel.es.css';
+
+export default class App extends Component {
+
+  render() {
+    let layout = null;
+    layout = (
+      <Layout topbar={this.props.topbar}>
+        <Switch>
+          <Route path="/" component={mainbuilder} />
+        </Switch>
+      </Layout>
+      );
+
+    return (
+      <Router>
+          {layout}
+      </Router>
+    );
+  }
 }
-
-export default App;

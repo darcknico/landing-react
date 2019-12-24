@@ -1,9 +1,18 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
+import { MemoryRouter, Router } from "react-router-dom";
+import '@testing-library/jest-dom/extend-expect';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('full app rendering/navigating', () => {
+  const console = global.console;
+	global.console = { error: jest.fn() };
+  const { container,unmount  } = render(
+      <App />
+    ,
+    { container: document.body },
+  )
+  unmount();
+  global.console = console;
+  
 });
